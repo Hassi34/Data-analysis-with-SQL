@@ -1,17 +1,17 @@
---SELECT * FROM 
---PortfolioProject..CovidDeaths
---WHERE continent IS NOT NULL
---ORDER BY 3,4 
+SELECT * FROM 
+PortfolioProject..CovidDeaths
+WHERE continent IS NOT NULL
+ORDER BY 3,4 
 
---SELECT * FROM 
---PortfolioProject..CovidVaccinations
---WHERE continent IS NOT NULL
---ORDER BY 3,4 
+SELECT * FROM 
+PortfolioProject..CovidVaccinations
+WHERE continent IS NOT NULL
+ORDER BY 3,4 
 
---SELECT Location, Date, total_cases, new_cases, total_deaths, population
---FROM PortfolioProject..CovidDeaths
---WHERE continent IS NOT NULL
---ORDER BY 1,2
+SELECT Location, Date, total_cases, new_cases, total_deaths, population
+FROM PortfolioProject..CovidDeaths
+WHERE continent IS NOT NULL
+ORDER BY 1,2
 
 -- TOTAL CASES VS TOTAL DEATHS
 SELECT Location, Date, total_cases, total_deaths, (total_deaths/total_cases)*100 AS DeathPercentage
@@ -65,7 +65,7 @@ FROM
 PortfolioProject..CovidDeaths deaths
 JOIN PortfolioProject..CovidVaccinations vacc
 	ON	deaths.location = vacc.location
-	and deaths.date =vacc.date
+	AND deaths.date =vacc.date
 WHERE deaths.continent IS NOT NULL
 ORDER BY 1,3
 
@@ -115,8 +115,7 @@ FROM #PercentPopulationVaccinated
 
 -- VIEWS
 
-create view PercentPopulationVaccinated4
-as
+create view PercentPopulationVaccinated AS
 SELECT deaths.location, deaths.continent, deaths.date, deaths.population, vacc.new_vaccinations,
 SUM(CAST(vacc.new_vaccinations AS int)) OVER (PARTITION BY deaths.location ORDER BY deaths.location, deaths.Date) AS RollingPeopleVaccinated
 FROM 
@@ -127,6 +126,6 @@ JOIN PortfolioProject..CovidVaccinations vacc
 WHERE deaths.continent IS NOT NULL
 --GO 
 --ORDER BY 1,3 --The ORDER BY claus is invalid in views
--- I am running the query using this view
+-- Now I am able to query the data using this view
 SELECT * FROM PercentPopulationVaccinated
 
