@@ -1,17 +1,17 @@
---SELECT * FROM 
---PortfolioProject..CovidDeaths
---WHERE continent IS NOT NULL
---ORDER BY 3,4 
+SELECT * FROM 
+PortfolioProject..CovidDeaths
+WHERE continent IS NOT NULL
+ORDER BY 3,4 
 
---SELECT * FROM 
---PortfolioProject..CovidVaccinations
---WHERE continent IS NOT NULL
---ORDER BY 3,4 
+SELECT * FROM 
+PortfolioProject..CovidVaccinations
+WHERE continent IS NOT NULL
+ORDER BY 3,4 
 
---SELECT Location, Date, total_cases, new_cases, total_deaths, population
---FROM PortfolioProject..CovidDeaths
---WHERE continent IS NOT NULL
---ORDER BY 1,2
+SELECT Location, Date, total_cases, new_cases, total_deaths, population
+FROM PortfolioProject..CovidDeaths
+WHERE continent IS NOT NULL
+ORDER BY 1,2
 
 -- TOTAL CASES VS TOTAL DEATHS
 SELECT Location, Date, total_cases, total_deaths, (total_deaths/total_cases)*100 AS DeathPercentage
